@@ -1,6 +1,6 @@
 Forked from https://github.com/ruben0909/midea-ac-py which is forked from https://github.com/NeoAcheron/midea-ac-py and also using midea directory from https://github.com/Michael0yodi/midea-ac-py.
 
-Docker create instructions. Including this as I remapped using '-v' the /config and custom_components directories.
+Docker create instructions. Including this as I remapped using '-v' the /config directory (which in turn houses the deps and custom_components).
 
 docker run \
     --init -d --name="home-assistant" \
@@ -21,7 +21,9 @@ configuration.yaml:
       username: 'username@email.com'
       password: !secret midea_password
 
-Package dependency info. Using the manifest, deps are downloaded automatically, but from the wrong location. I used Michael0Yodi's  midea0.1.7 package, not ruben0909's. It has a sleep fix among other items that appear to be required. To overlay I copied the contents of the midea directory (in this fork, overlaying the created deps directory from the manifest). 
+Package dependency info. Using the manifest, deps are downloaded automatically, but from the a location that doesn't include fixes added by other authors. To make this work I used Michael0Yodi's  midea0.1.7 package, not ruben0909's. It has a sleep fix among other items. To overlay I copied the contents of the midea directory (from this fork, overlay it on the created deps directory from the manifest after initial startup). 
+
+e.g.:
 
 cp midea/* /opt/docker/homeassistant/deps/lib/python3.7/site-packages/midea (or wherever your deps directory is). 
       
