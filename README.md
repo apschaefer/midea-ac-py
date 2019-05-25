@@ -21,7 +21,7 @@ configuration.yaml:
       username: 'username@email.com'
       password: !secret midea_password
 
-Package dependency info. Using the manifest, deps are downloaded automatically, but from the wrong location. I used Y0da's midea package, not ruben0909's. It has a sleep fix among other items that appear to be required. To overlay I copied the contents of the midea directory (in this fork, overlaying the created deps directory from the manifest). 
+Package dependency info. Using the manifest, deps are downloaded automatically, but from the wrong location. I used Michael0Yodi's  midea0.1.7 package, not ruben0909's. It has a sleep fix among other items that appear to be required. To overlay I copied the contents of the midea directory (in this fork, overlaying the created deps directory from the manifest). 
 
 cp midea/* /opt/docker/homeassistant/deps/lib/python3.7/site-packages/midea (or wherever your deps directory is). 
       
