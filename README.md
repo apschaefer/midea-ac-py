@@ -1,4 +1,4 @@
-Forked from https://github.com/ruben0909/midea-ac-py which is forked from https://github.com/NeoAcheron/midea-ac-py and also using midea directory from y0da.
+Forked from https://github.com/ruben0909/midea-ac-py which is forked from https://github.com/NeoAcheron/midea-ac-py and also using midea directory from https://github.com/Michael0yodi/midea-ac-py.
 
 Docker create instructions. Including this as I remapped using '-v' the /config and custom_components directories.
 
