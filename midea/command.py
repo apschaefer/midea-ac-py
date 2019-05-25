@@ -1,8 +1,8 @@
-
+import logging
 import midea.crc8 as crc8
 
 VERSION = '0.1.7'
-
+_LOGGER = logging.getLogger(__name__)
 
 class base_command:
 
@@ -105,8 +105,8 @@ class appliance_response:
     def __init__(self, data: bytearray):
         # The response data from the appliance includes a packet header which we don't want
         self.data = data[0x32:]
-        if(__debug__):
-            print("Appliance response data: {}".format(self.data.hex()))
+        #if(__debug__):
+        _LOGGER.debug("Appliance response data: {}".format(self.data.hex()))
 
     # Byte 0x01
 

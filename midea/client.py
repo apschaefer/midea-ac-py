@@ -3,6 +3,7 @@
 # The orignal Ruby version can be found here https://github.com/yitsushi/midea-air-condition
 # License MIT - Use as you please and at your own risk
 
+
 from typing import Dict, List
 
 from midea.cloud import cloud
@@ -36,7 +37,8 @@ class client:
         self._devices = {}  # type: Dict[str, device]
 
     def setup(self):
-        if self._cloud.session is None:
+#        if self._cloud.session is None:
+        if not self._cloud.session:
             self._cloud.login()
 
     def devices(self):
