@@ -4,5 +4,5 @@
   "documentation": "https://github.com/keatontaylor/alexa_media_player/wiki",
   "dependencies": [],
   "codeowners": ["@keatontaylor", "@alandtse","@ruben0909"],
-  "requirements": ["bumpversion==0.5.3"]
+  "requirements": ["bumpversion==0.5.3","midea==0.1.7","pycryptodome==3.7.0"]
 }
