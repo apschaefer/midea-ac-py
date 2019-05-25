@@ -1,5 +1,10 @@
 Forked from https://github.com/ruben0909/midea-ac-py which is forked from https://github.com/NeoAcheron/midea-ac-py and also using midea directory from https://github.com/Michael0yodi/midea-ac-py.
 
+I experienced problems with Homeassistant docker builds .85 -> 0.93.2 trying to follow the original directions in NeoArcheron's wiki. It appears homeassistant changed the way it handles package requirements and none of the original files or forks worked for me.  I was finally able to get this to work after reading ruben0909's manifest.json and I modified that manifest.json format to include pycryptodome and midea as requirements. This causes an automatic fetch of the requirements to the deps/lib/python3.7 directory.  I still encountered errors after doing this. I needed to use Michael0yodi's version of midea 0.1.7 with Ruben0909's climate.py copy. 
+
+Here are hopefully the details of how to get this working in docker.
+
+
 Docker create instructions. Including this as I remapped using '-v' the /config directory (which in turn houses the deps and custom_components).
 
 docker run \
@@ -21,17 +26,20 @@ configuration.yaml:
       username: 'username@email.com'
       password: !secret midea_password
 
-Package dependency info. Using the manifest, deps are downloaded automatically, but from the a location that doesn't include fixes added by other authors. To make this work I used Michael0Yodi's  midea0.1.7 package, not ruben0909's. It has a sleep fix among other items. To overlay I copied the contents of the midea directory (from this fork, overlay it on the created deps directory from the manifest after initial startup). 
+secrets.yaml:
+midea_password: YOURPASSWORDHERE
+
+
+To fix the library I overlay / copied the contents of the midea directory (from this fork, overlay it on the created deps directory from the manifest after initial startup of the container).  
 
 e.g.:
 
-cp midea/* /opt/docker/homeassistant/deps/lib/python3.7/site-packages/midea (or wherever your deps directory is). 
+cp $fork/midea/* /opt/docker/homeassistant/deps/lib/python3.7/site-packages/midea (or wherever your deps directory is). 
       
-      
+     
+I don't know proper git etiquette (this is my first fork / edit with github), so preserving the comments below as this is not my original work. 
 
-
-
-Original comments below: I don't know the pull etiquette (this is my first fork / edit with github). I see a problem with Homeassistant 0.93.2 (and likely other lower versions) and the manifest.json format. Modified accordingly. Note I had to also install dependencies manually:
+Original author(s) comments below: 
 ------------------------------
 
 ## No more development
